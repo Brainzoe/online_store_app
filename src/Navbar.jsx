@@ -10,7 +10,7 @@ function Navbar({ cartItems }) {
 
   return (
       <nav className="navbar">
-          <h1>My Store</h1>
+          <h1>JohnRiches Collections</h1>
           <div className="nav-links">
               <Link to="/store" className="nav-link">
                   <StoreMallDirectoryIcon style={{ fontSize: '30px', marginRight: '5px' }} />
