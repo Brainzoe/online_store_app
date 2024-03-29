@@ -1,0 +1,28 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #6d4d4d;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-link {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+}
+
+.store-text {
+    font-size: 14px; /* Adjust the font size as desired */
+}
+
+.nav-link:hover {
+    opacity: 0.8;
+}
