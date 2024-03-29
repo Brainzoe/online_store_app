@@ -25,10 +25,14 @@ function Payment({ cartItems }) {
       const purchasedItems = { items: cartItems, date: new Date().toLocaleString() };
       localStorage.setItem('purchasedItems', JSON.stringify(purchasedItems));
 
-      // Payment successful, navigate to receipt page
-      navigate('/receipt');
-      // Clear the cart after successful payment
-      localStorage.removeItem('cartItems');
+      // Show pop-up for successful payment
+      const paymentConfirmed = window.confirm('Payment successful. Click OK to continue.');
+      if (paymentConfirmed) {
+        // Navigate to receipt page
+        navigate('/receipt');
+        // Clear the cart after successful payment
+        localStorage.removeItem('cartItems');
+      }
     } catch (error) {
       setError(error.message);
     }
@@ -44,37 +48,29 @@ function Payment({ cartItems }) {
     });
   };
 
-  // Validation function for card details
-  // const validateCardDetails = (details) => {
-  //   // Check if any required field is empty
-  //   if (!details.cardNumber || !details.expiryDate || !details.cvv) {
-  //     throw new Error('Please fill in all fields');
-  //   }
-  // };
+  const validateCardDetails = (details) => {
+    // Check if card number, expiry date, and CVV are filled
+    if (!details.cardNumber || !details.expiryDate || !details.cvv) {
+      throw new Error('Please fill in all fields');
+    }
 
-    const validateCardDetails = (details) => {
-      // Check if card number, expiry date, and CVV are filled
-      if (!details.cardNumber || !details.expiryDate || !details.cvv) {
-          throw new Error('Please fill in all fields');
-      }
+    // Validate card number (simple validation for demonstration)
+    const cardNumberRegex = /^[0-9]{16}$/;
+    if (!cardNumberRegex.test(details.cardNumber)) {
+      throw new Error('Invalid card number');
+    }
 
-      // Validate card number (simple validation for demonstration)
-      const cardNumberRegex = /^[0-9]{16}$/;
-      if (!cardNumberRegex.test(details.cardNumber)) {
-          throw new Error('Invalid card number');
-      }
+    // Validate expiry date (simple validation for demonstration)
+    const expiryDateRegex = /^(0[1-9]|1[0-2])\/?([0-9]{2})$/;
+    if (!expiryDateRegex.test(details.expiryDate)) {
+      throw new Error('Invalid expiry date');
+    }
 
-      // Validate expiry date (simple validation for demonstration)
-      const expiryDateRegex = /^(0[1-9]|1[0-2])\/?([0-9]{2})$/;
-      if (!expiryDateRegex.test(details.expiryDate)) {
-          throw new Error('Invalid expiry date');
-      }
-
-      // Validate CVV (simple validation for demonstration)
-      const cvvRegex = /^[0-9]{3}$/;
-      if (!cvvRegex.test(details.cvv)) {
-          throw new Error('Invalid CVV');
-      }
+    // Validate CVV (simple validation for demonstration)
+    const cvvRegex = /^[0-9]{3}$/;
+    if (!cvvRegex.test(details.cvv)) {
+      throw new Error('Invalid CVV');
+    }
   };
 
   const handleInputChange = (e) => {
