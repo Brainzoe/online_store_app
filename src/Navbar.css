@@ -1,28 +1,34 @@
+/* Navbar styles */
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px;
     background-color: #6d4d4d;
-}
-
-.nav-links {
+    width: 100%;
+    position: fixed; /* Make the navbar fixed */
+    top: 0; /* Position the navbar at the top */
+    z-index: 1000; /* Set a high z-index to ensure the navbar appears above other content */
+  }
+  
+  .nav-links {
     display: flex;
     align-items: center;
-}
-
-.nav-link {
+  }
+  
+  .nav-link {
     margin-right: 20px;
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: #000;
-}
-
-.store-text {
-    font-size: 14px; /* Adjust the font size as desired */
-}
-
-.nav-link:hover {
+    color: #fff; /* Change text color to white for better visibility */
+  }
+  
+  .store-text {
+    font-size: 14px;
+  }
+  
+  .nav-link:hover {
     opacity: 0.8;
-}
+  }
+  
