@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './store.css'; // Import CSS file for styling
 
 function Store({ addToCart }) {
   const [products, setProducts] = useState([]);
@@ -29,14 +30,14 @@ function Store({ addToCart }) {
   };
 
   return (
-    <div>
+    <div className="store-container">
       <h2>Store</h2>
       {products.map((product) => (
-        <div key={product.id}>
+        <div key={product.id} className="store-item"> {/* Apply CSS class for each product item */}
           <h3>{product.title}</h3> {/* Use title instead of name */}
           <img src={product.thumbnail} alt={product.title} /> {/* Display product thumbnail */}
           <p>${product.price}</p>
-          <div style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '5px', marginTop: '5px' }}>
+          <div className="description">
             <p>{product.description}</p> {/* Display product description inside a frame */}
           </div>
           <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
